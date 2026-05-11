@@ -92,8 +92,8 @@ class Game {
         this.moves = 0;
         this.history = [];
         this.isGameOver = false;
-        document.getElementById('move-counter').textContent = `Ходов: ${this.moves}`;
-        document.getElementById('current-level-name').textContent = `Уровень ${levelNum}`;
+        document.getElementById('move-counter').textContent = `Moves: ${this.moves}`;
+        document.getElementById('current-level-name').textContent = `Level ${levelNum}`;
         document.getElementById('undo-btn').disabled = true;
 
         // Difficulty scaling
@@ -116,7 +116,7 @@ class Game {
             [1, 0, 1],
             [0, 1, 0]
         ];
-        this.showTutorialHint('Нажмите в самый центр (1, 1), чтобы обнулить соседей!');
+        this.showTutorialHint('Click in the center (1, 1) to zero the neighbors!');
     }
 
     showTutorialHint(text) {
@@ -207,7 +207,7 @@ class Game {
         });
 
         this.moves++;
-        document.getElementById('move-counter').textContent = `Ходов: ${this.moves}`;
+        document.getElementById('move-counter').textContent = `Moves: ${this.moves}`;
         this.renderGrid();
 
         if (lost) {
@@ -222,7 +222,7 @@ class Game {
         if (this.history.length === 0 || this.isGameOver) return;
         this.grid = this.history.pop();
         this.moves--;
-        document.getElementById('move-counter').textContent = `Ходов: ${this.moves}`;
+        document.getElementById('move-counter').textContent = `Moves: ${this.moves}`;
         if (this.history.length === 0) document.getElementById('undo-btn').disabled = true;
         this.renderGrid();
     }
@@ -238,15 +238,15 @@ class Game {
         const nextBtn = document.getElementById('next-btn');
 
         if (win) {
-            title.textContent = 'Победа!';
+            title.textContent = 'Victory!';
             title.style.color = 'var(--primary)';
-            msg.textContent = `Уровень ${this.currentLevel} пройден за ${this.moves} ходов.`;
+            msg.textContent = `Level ${this.currentLevel} completed in ${this.moves} moves.`;
             nextBtn.style.display = 'block';
             this.createParticles();
         } else {
-            title.textContent = 'Провал';
+            title.textContent = 'Failed';
             title.style.color = 'var(--accent)';
-            msg.textContent = 'Одна из клеток ушла в минус. Попробуйте снова.';
+            msg.textContent = 'One of the cells went below zero. Try again.';
             nextBtn.style.display = 'none';
             this.gridContainer.classList.add('shake');
             setTimeout(() => this.gridContainer.classList.remove('shake'), 400);

@@ -19,10 +19,10 @@
         <!-- Main Menu -->
         <section id="menu-screen" class="screen active">
             <h1 class="game-title">ZERO<span>GRID</span></h1>
-            <p class="game-subtitle">Обнули реальность</p>
+            <p class="game-subtitle">Reset Reality</p>
             <div class="menu-buttons">
-                <button id="start-btn" class="btn btn-primary">Играть</button>
-                <button id="levels-btn" class="btn btn-secondary">Уровни</button>
+                <button id="start-btn" class="btn btn-primary">Play</button>
+                <button id="levels-btn" class="btn btn-secondary">Levels</button>
             </div>
         </section>
 
@@ -30,7 +30,7 @@
         <section id="levels-screen" class="screen">
             <header class="screen-header">
                 <button class="back-btn" data-target="menu-screen">←</button>
-                <h2>Выберите уровень</h2>
+                <h2>Select Level</h2>
             </header>
             <div class="levels-grid" id="levels-container">
                 <!-- Levels will be injected here -->
@@ -42,10 +42,10 @@
             <header class="game-header">
                 <button class="back-btn" data-target="levels-screen">←</button>
                 <div class="level-info">
-                    <span id="current-level-name">Уровень 1</span>
-                    <div id="move-counter">Ходов: 0</div>
+                    <span id="current-level-name">Level 1</span>
+                    <div id="move-counter">Moves: 0</div>
                 </div>
-                <button id="reset-btn" title="Сбросить">⟳</button>
+                <button id="reset-btn" title="Reset">⟳</button>
             </header>
             
             <div class="game-container">
@@ -55,19 +55,19 @@
             </div>
 
             <footer class="game-footer">
-                <button id="undo-btn" class="btn btn-icon" disabled>Отменить ход</button>
+                <button id="undo-btn" class="btn btn-icon" disabled>Undo Move</button>
             </footer>
         </section>
 
         <!-- Result Overlay -->
         <div id="overlay" class="overlay">
             <div class="modal">
-                <h2 id="result-title">Победа!</h2>
-                <p id="result-message">Все клетки обнулены.</p>
+                <h2 id="result-title">Victory!</h2>
+                <p id="result-message">All cells are zeroed.</p>
                 <div class="modal-buttons">
-                    <button id="retry-btn" class="btn btn-secondary">Повторить</button>
-                    <button id="next-btn" class="btn btn-primary">Дальше</button>
-                    <button id="menu-from-result-btn" class="btn btn-text">В меню</button>
+                    <button id="retry-btn" class="btn btn-secondary">Retry</button>
+                    <button id="next-btn" class="btn btn-primary">Next</button>
+                    <button id="menu-from-result-btn" class="btn btn-text">Menu</button>
                 </div>
             </div>
         </div>
