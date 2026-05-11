@@ -1,18 +1,18 @@
-# Zero Grid Game
+# ZERO GRID
 
-Premium puzzle game. (English Version)
+A premium puzzle game. Reset reality to zero.
 
-## Deployment Options
+[**🚀 Play Now**](https://haykohanyans.github.io/zero_gird/)
 
-### 1. One-Click Upload (Windows)
-- Double-click `deploy.bat` to automatically add, commit, and push changes to GitHub.
+---
 
-### 2. GitHub Pages
-1. Go to your repository settings on GitHub.
-2. In Settings > Pages, ensure the source is set to `main` branch and `/ (root)` folder.
+### How to Play
+- **Goal**: Reduce all numbers in the grid to exactly **0**.
+- **Mechanics**: Clicking a cell decreases its 4 neighbors (Up, Down, Left, Right) by **1**.
+- **Caution**: If any cell goes below **0**, you lose!
 
-### 2. Vercel / Netlify (Fastest)
-- Drag and drop this folder to [Netlify Drop](https://app.netlify.com/drop) or [Vercel](https://vercel.com/new).
-
-### 3. CLI Deployment (Surge)
-- Run `npx surge .` in this folder.
+### Features
+- 100 levels with increasing difficulty.
+- Grid sizes from 3x3 to 6x6.
+- Procedurally generated solvable puzzles.
+- Premium dark mode interface.
