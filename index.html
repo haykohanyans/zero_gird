@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Grid - Puzzle Game</title>
+    <meta name="description" content="Увлекательная математическая головоломка. Обнули все клетки, не уходя в минус!">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Background Elements -->
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+
+        <!-- Main Menu -->
+        <section id="menu-screen" class="screen active">
+            <h1 class="game-title">ZERO<span>GRID</span></h1>
+            <p class="game-subtitle">Обнули реальность</p>
+            <div class="menu-buttons">
+                <button id="start-btn" class="btn btn-primary">Играть</button>
+                <button id="levels-btn" class="btn btn-secondary">Уровни</button>
+            </div>
+        </section>
+
+        <!-- Level Selection -->
+        <section id="levels-screen" class="screen">
+            <header class="screen-header">
+                <button class="back-btn" data-target="menu-screen">←</button>
+                <h2>Выберите уровень</h2>
+            </header>
+            <div class="levels-grid" id="levels-container">
+                <!-- Levels will be injected here -->
+            </div>
+        </section>
+
+        <!-- Game Screen -->
+        <section id="game-screen" class="screen">
+            <header class="game-header">
+                <button class="back-btn" data-target="levels-screen">←</button>
+                <div class="level-info">
+                    <span id="current-level-name">Уровень 1</span>
+                    <div id="move-counter">Ходов: 0</div>
+                </div>
+                <button id="reset-btn" title="Сбросить">⟳</button>
+            </header>
+            
+            <div class="game-container">
+                <div id="grid" class="grid-container">
+                    <!-- Grid cells will be injected here -->
+                </div>
+            </div>
+
+            <footer class="game-footer">
+                <button id="undo-btn" class="btn btn-icon" disabled>Отменить ход</button>
+            </footer>
+        </section>
+
+        <!-- Result Overlay -->
+        <div id="overlay" class="overlay">
+            <div class="modal">
+                <h2 id="result-title">Победа!</h2>
+                <p id="result-message">Все клетки обнулены.</p>
+                <div class="modal-buttons">
+                    <button id="retry-btn" class="btn btn-secondary">Повторить</button>
+                    <button id="next-btn" class="btn btn-primary">Дальше</button>
+                    <button id="menu-from-result-btn" class="btn btn-text">В меню</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

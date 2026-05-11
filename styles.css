@@ -1,0 +1,455 @@
+:root {
+    --bg-color: #0a0a0f;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --primary: #00f2ff;
+    --secondary: #bd00ff;
+    --accent: #ff007a;
+    --text: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.6);
+    --font-main: 'Outfit', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text);
+    font-family: var(--font-main);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Background Glows */
+.bg-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-glow-1 {
+    background: var(--primary);
+    top: -50px;
+    left: -50px;
+}
+
+.bg-glow-2 {
+    background: var(--secondary);
+    bottom: -50px;
+    right: -50px;
+}
+
+/* Screen Transitions */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Main Menu */
+#menu-screen {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-title span {
+    font-weight: 300;
+}
+
+.game-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 280px;
+}
+
+/* Buttons */
+.btn {
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary), #00a2ff);
+    color: #000;
+    box-shadow: 0 8px 24px rgba(0, 242, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 242, 255, 0.5);
+}
+
+.btn-secondary {
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-dim);
+}
+
+.btn-icon {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Levels Screen */
+.screen-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.back-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    overflow-y: auto;
+    padding-bottom: 40px;
+}
+
+.level-card {
+    aspect-ratio: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.level-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+}
+
+.level-card.tutorial-card {
+    border-color: var(--secondary);
+    background: rgba(189, 0, 255, 0.1);
+}
+
+.level-card.locked {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Game Screen */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.level-info {
+    text-align: center;
+}
+
+.level-info span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#move-counter {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+}
+
+#reset-btn {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+#reset-btn:hover {
+    opacity: 1;
+    transform: rotate(45deg);
+}
+
+.game-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-container {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--card-bg);
+    padding: 12px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+}
+
+.cell {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.3s, border-color 0.3s;
+    user-select: none;
+}
+
+.cell:active {
+    transform: scale(0.95);
+}
+
+.cell.neighbor-hit {
+    animation: cell-hit 0.3s ease-out;
+}
+
+.cell.zero {
+    color: var(--text-dim);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.cell.critical {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.game-footer {
+    padding-top: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Overlay & Modals */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #15151e;
+    border: 1px solid var(--glass-border);
+    padding: 40px 32px;
+    border-radius: 32px;
+    text-align: center;
+    width: 85%;
+    transform: scale(0.9);
+    transition: var(--transition);
+}
+
+.overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.modal p {
+    color: var(--text-dim);
+    margin-bottom: 32px;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-text {
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 1rem;
+}
+
+/* Animations */
+@keyframes cell-hit {
+    0% { transform: scale(1); background: rgba(255, 255, 255, 0.1); }
+    50% { transform: scale(1.1); background: rgba(0, 242, 255, 0.2); }
+    100% { transform: scale(1); background: rgba(255, 255, 255, 0.03); }
+}
+
+.win-confetti {
+    position: absolute;
+    pointer-events: none;
+    z-index: 200;
+}
+
+.cell.pulse {
+    animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+    0% { border-color: var(--glass-border); }
+    50% { border-color: rgba(0, 242, 255, 0.4); box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); }
+    100% { border-color: var(--glass-border); }
+}
+
+.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+.tutorial-hint-overlay {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--secondary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(189, 0, 255, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 50;
+    width: 80%;
+}
+
+.tutorial-hint-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-4px); }
+}
+
+/* Responsive fixes */
+@media (max-width: 400px) {
+    .grid-container {
+        gap: 8px;
+        padding: 8px;
+    }
+    .cell {
+        border-radius: 12px;
+        font-size: 1.4rem;
+    }
+}
