@@ -25,7 +25,11 @@ class Game {
 
     init() {
         // Navigation
-        document.getElementById('start-btn').onclick = () => this.showScreen('levels');
+        document.getElementById('start-btn').onclick = () => {
+            this.currentLevel = 0;
+            this.loadLevel(0);
+            this.showScreen('game');
+        };
         document.getElementById('levels-btn').onclick = () => this.showScreen('levels');
         
         document.querySelectorAll('.back-btn').forEach(btn => {
@@ -66,7 +70,7 @@ class Game {
         // Level 0 (Tutorial)
         const tutorialCard = document.createElement('div');
         tutorialCard.className = 'level-card tutorial-card';
-        tutorialCard.textContent = '0';
+        tutorialCard.innerHTML = `<span>0</span><small>Tutorial</small>`;
         tutorialCard.onclick = () => {
             this.currentLevel = 0;
             this.loadLevel(0);
@@ -74,11 +78,12 @@ class Game {
         };
         container.appendChild(tutorialCard);
 
-        // Define levels 1-20
-        for (let i = 1; i <= 20; i++) {
+        // Define 100 levels
+        for (let i = 1; i <= 100; i++) {
             const card = document.createElement('div');
             card.className = 'level-card';
-            card.textContent = i;
+            const size = i <= 30 ? 3 : (i <= 60 ? 4 : (i <= 85 ? 5 : 6));
+            card.innerHTML = `<span>${i}</span><small>${size}x${size}</small>`;
             card.onclick = () => {
                 this.currentLevel = i;
                 this.loadLevel(i);
@@ -96,13 +101,13 @@ class Game {
         document.getElementById('current-level-name').textContent = `Level ${levelNum}`;
         document.getElementById('undo-btn').disabled = true;
 
-        // Difficulty scaling
-        this.size = levelNum <= 5 ? 3 : (levelNum <= 12 ? 4 : 5);
-        
+        // Difficulty scaling for 100 levels
         if (levelNum === 0) {
+            this.size = 3;
             this.setupTutorial();
         } else {
-            const steps = 3 + Math.floor(levelNum * 0.8);
+            this.size = levelNum <= 30 ? 3 : (levelNum <= 60 ? 4 : (levelNum <= 85 ? 5 : 6));
+            const steps = 3 + Math.floor(levelNum * 0.5);
             this.generateSolvableLevel(this.size, steps);
             this.hideTutorialHint();
         }
@@ -116,7 +121,7 @@ class Game {
             [1, 0, 1],
             [0, 1, 0]
         ];
-        this.showTutorialHint('Click in the center (1, 1) to zero the neighbors!');
+        this.showTutorialHint('GOAL: Make all cells 0. Click in the center to decrease its neighbors!');
     }
 
     showTutorialHint(text) {

@@ -3,3 +3,8 @@ node_modules
 .vercel
 .netlify
 gemini.md
+.env
+*.log
+Thumbs.db
+.vscode
+.idea
